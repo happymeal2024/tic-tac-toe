@@ -3,16 +3,18 @@ package com.company;
 public class MicBoard implements Board {
 
     private char[] field;
+    private static int totalFieldNumber;
 
     public MicBoard() {
-        field = new char[9];
-        for (int i = 0; i < 9; i++) {
+        totalFieldNumber = 9;
+        field = new char[totalFieldNumber];
+        for (int i = 0; i < totalFieldNumber; i++) {
             field[i] = '-';
         }
     }
 
     public char getValueAt(int index) {
-        if (index < 10 && index > 0) {
+        if (index <= totalFieldNumber && index > 0) {
             System.out.println(field[index - 1] + " " + index);
             return field[index - 1];
         }
@@ -20,7 +22,7 @@ public class MicBoard implements Board {
     }
 
     public void setValueAt(int index, char value) {
-        if (index > 0 && index < 10) {
+        if (index > 0 && index <= totalFieldNumber) {
             if(value == 'x' || value == 'o' || value == '-') {
                 field[index - 1] = value;
                 System.out.println(value + " " + field[index - 1]);
@@ -32,7 +34,7 @@ public class MicBoard implements Board {
         }
     }
     public void clear() {
-        for (int i = 0; i < 9; i++) {
+        for (int i = 0; i < totalFieldNumber; i++) {
             field[i] = '-';
         }
     }
